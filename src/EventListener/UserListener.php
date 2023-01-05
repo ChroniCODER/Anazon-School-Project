@@ -17,13 +17,13 @@ class UserListener
 
     public function hashPassword(User $user)
     {
-        if (!$user->plainPassword) {
+        if (!$user->getPlainPassword()) {
             return;
         }
         
         $hashedPassword = $this->passwordHasher->hashPassword(
             $user,
-            $user->plainPassword
+            $user->getPlainPassword()
         );
 
         $user->setPassword($hashedPassword);
