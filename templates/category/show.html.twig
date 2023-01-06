@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Univers {{ category.title}} {% endblock %}
+
+{% block body %}
+    <h1>Retrouvez tous nos univers</h1>
+    
+    <p>{{ category.description | raw }}</p>
+
+    {% for product in category.products %}
+        <div>
+            <h2>{{ product.name }}</h2>
+            <span>{{ product.price | format_currency('EUR', locale='fr') }}</span>
+        </div>
+    
+    {% else %}
+        Aucun produit dans l'Univers {{ category.title }}
+    {% endfor %}
+
+
+{% endblock %}
