@@ -1,3 +1,15 @@
-body {
-    background-color: rgb(12, 238, 170);
-}
+
+$primary: darken(#428bca, 20%);
+
+//anazon color set
+
+$anazonDarkBlue: #003f62;
+$anazonLightBlue: #e2f4ff;
+$anazonGrey: #f4f4f4;
+$anazonGoldBrown: #eda415;
+
+
+@import "~bootstrap/scss/bootstrap";
+
+
+
