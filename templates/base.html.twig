@@ -14,6 +14,12 @@
         {% endblock %}
     </head>
     <body>
+
+        {% include '_parts/header.html.twig' %}
+        {% include '_parts/navBarSearch.html.twig' %}
+        {% include '_parts/navBarMenu.html.twig' %}
+
+
         {% block body %}{% endblock %}
     </body>
 </html>
