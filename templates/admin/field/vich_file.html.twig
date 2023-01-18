@@ -1,6 +1,9 @@
-{# admin/field/vich_file.html.twig #}
+{# admin/field/vich_image.html.twig #}
 {% if vich_uploader_asset(entity.instance, field.property, entity.fqcn) %}
-    <img src="{{ vich_uploader_asset(entity.instance, field.property, entity.fqcn)|imagine_filter('admin_thumbnail') }}">
+    <a href ="{{ vich_uploader_asset(entity.instance, field.property, entity.fqcn) }}" Download>
+    Download
+    </a>
+
 {% else %}
     <span class="badge badge-secondary">
         Empty 

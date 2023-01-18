@@ -1,0 +1,18 @@
+{# admin/field/vich_image.html.twig #}
+
+{# {% if vich_uploader_asset(entity.instance.productImages[0], 'pathFile') %}
+    <img src="{{ vich_uploader_asset(entity.instance.productImages[0], 'pathFile')|imagine_filter('admin_thumbnail') }}">
+{% else %}
+    <span class="badge badge-secondary">
+        Empty 
+    </span>
+{% endif %} #}
+
+{% for productImage in entity.instance.productImages %}
+    <img src="{{ vich_uploader_asset(productImage, 'pathFile')|imagine_filter('admin_thumbnail') }}">
+
+{% else %}
+    <span class="badge badge-secondary">
+        Empty 
+    </span>
+{% endfor %}

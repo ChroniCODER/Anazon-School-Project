@@ -1,0 +1,6 @@
+TIPS DEV:
+
+ALT + MAJ + A = transformer/DETRANSFORMER un une selection en commentaire (testé en html, php et js )
+
+CTRL + MAJ + T = reouvrir onglet fermé par inadvertance
+
