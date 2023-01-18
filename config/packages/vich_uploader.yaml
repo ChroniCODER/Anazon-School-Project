@@ -6,9 +6,13 @@ vich_uploader:
 
     mappings:
         categories:
-            uuri_prefix: /images/categories
+            uri_prefix: /images/categories
             upload_destination: '%kernel.project_dir%/public/images/categories'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
 
     #    products:
     #        uri_prefix: /images/products

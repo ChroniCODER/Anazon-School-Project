@@ -1,0 +1,8 @@
+{# admin/field/vich_image.html.twig #}
+{% if vich_uploader_asset(entity.instance, field.property, entity.fqcn) %}
+    <img src="{{ vich_uploader_asset(entity.instance, field.property, entity.fqcn)|imagine_filter('admin_thumbnail') }}">
+{% else %}
+    <span class="badge badge-secondary">
+        Empty
+    </span>
+{% endif %}
