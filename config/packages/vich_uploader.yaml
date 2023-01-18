@@ -10,11 +10,14 @@ vich_uploader:
             upload_destination: '%kernel.project_dir%/public/images/categories'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
-            inject_on_load: false
-            delete_on_update: true
-            delete_on_remove: true
+        productImages:
+            uri_prefix: /product-images
+            upload_destination: '%kernel.project_dir%/public/product-images'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+            
 
     #    products:
-    #        uri_prefix: /images/products
+    #        uri_prefix: /images/products (ici c'est a le prefixe à mettre en coherence avec le dossier destionation d'upload ** pas de majuscule**)
     #        upload_destination: '%kernel.project_dir%/public/images/products'
     #        namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
