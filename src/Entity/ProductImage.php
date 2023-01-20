@@ -7,8 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: ProductImageRepository::class)]
+#[ORM\UniqueConstraint(columns: ['product_id','position'])]
+#[UniqueEntity(['product', 'position'], message: 'cette position d\'image est déjà utilisé')]
 #[Vich\Uploadable]
 class ProductImage
 {
@@ -76,7 +81,7 @@ class ProductImage
 
     public function __toString()
     {
-        return $this->getPath();
+        return $this->getPath() ?? '-';
     }
 
     /**
@@ -102,5 +107,15 @@ class ProductImage
     public function getPathFile(): ?File
     {
         return $this->pathFile;
+    }
+
+    #[Assert\Callback()]
+    public function newPhotoOrPathAtLeast(ExecutionContextInterface $context, $payload)
+    {
+        if (!$this->pathFile && !$this->path) {
+            $context->buildViolation('Vous devez avoir une image !')
+                ->atPath('pathFile')
+                ->addViolation();
+        }
     }
 }
