@@ -18,7 +18,7 @@ class Rating
 
     #[ORM\ManyToOne(inversedBy: 'ratings')]
     #[ORM\JoinColumn(name:'product_id',nullable: false)]
-    private ?product $product_id = null;
+    private ?Product $product_id = null;
 
     #[ORM\ManyToOne(inversedBy: 'ratings')]
     #[ORM\JoinColumn(name:'user_id',nullable: false)]
