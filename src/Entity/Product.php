@@ -48,18 +48,12 @@ class Product
     #[Vich\UploadableField(mapping: 'manuals', fileNameProperty: 'manual')]
     private ?File $manualFile = null;
 
-    #[ORM\OneToMany(mappedBy: 'product_id', targetEntity: Rating::class, orphanRemoval: true)]
-    private Collection $ratings;
-
-    #[ORM\OneToMany(mappedBy: 'product_id', targetEntity: Review::class)]
-    private Collection $reviews;
-
+    
 
     public function __construct()
     {
         $this->productImages = new ArrayCollection();
-        $this->ratings = new ArrayCollection();
-        $this->reviews = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -182,63 +176,5 @@ class Product
         return $this->manualFile;
     }
 
-    /**
-     * @return Collection<int, Rating>
-     */
-    public function getRatings(): Collection
-    {
-        return $this->ratings;
-    }
 
-    public function addRating(Rating $rating): self
-    {
-        if (!$this->ratings->contains($rating)) {
-            $this->ratings->add($rating);
-            $rating->setProductId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRating(Rating $rating): self
-    {
-        if ($this->ratings->removeElement($rating)) {
-            // set the owning side to null (unless already changed)
-            if ($rating->getProductId() === $this) {
-                $rating->setProductId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Review>
-     */
-    public function getReviews(): Collection
-    {
-        return $this->reviews;
-    }
-
-    public function addReview(Review $review): self
-    {
-        if (!$this->reviews->contains($review)) {
-            $this->reviews->add($review);
-            $review->setProductId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReview(Review $review): self
-    {
-        if ($this->reviews->removeElement($review)) {
-            // set the owning side to null (unless already changed)
-            if ($review->getProductId() === $this) {
-                $review->setProductId(null);
-            }
-        }
-
-        return $this;
-    }
 }
