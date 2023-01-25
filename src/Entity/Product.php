@@ -48,12 +48,21 @@ class Product
     #[Vich\UploadableField(mapping: 'manuals', fileNameProperty: 'manual')]
     private ?File $manualFile = null;
 
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Review::class)]
+    private Collection $reviews;
+
     
 
     public function __construct()
     {
         $this->productImages = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
         
+    }
+
+    public function __toString()
+    {
+        return $this->getName() ?? '';
     }
 
     public function getId(): ?int
@@ -174,6 +183,36 @@ class Product
     public function getManualFile(): ?File
     {
         return $this->manualFile;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews->add($review);
+            $review->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getProduct() === $this) {
+                $review->setProduct(null);
+            }
+        }
+
+        return $this;
     }
 
 

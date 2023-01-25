@@ -1,15 +1,19 @@
 
-$primary: darken(#428bca, 20%);
-
 //anazon color set
 
-$anazonDarkBlue: #003f62;
+$dark: #003f62;
+$light: #f4f4f4;;
 $anazonLightBlue: #e2f4ff;
-$anazonGrey: #f4f4f4;
+
 $anazonGoldBrown: #eda415;
 
 
 @import "~bootstrap/scss/bootstrap";
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
 
 
 

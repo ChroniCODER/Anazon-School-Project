@@ -1,15 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Univers {{ category.title}} {% endblock %}
+{% block title %} {{ product.name }} {% endblock %}
 
 {% block body %}
-    <h1>Retrouvez tous nos univers</h1>
     
-    <p>{{ category.description | raw }}</p>
-
-    {% for product in category.products %}
+    
         <div>
-            <a href="{{ path('app_product', {'id': product.id}) }}"> <h2>{{ product.name }}</h2> </a>
+            <h2>{{ product.name }}</h2>
             {% if product.productImages | length > 0 %}
                 <img src="{{ asset('product-images/' ~  product.productImages[0].path) }}" width="100" />
             {% endif %}
@@ -19,10 +16,7 @@
         <div>
             {{ form(review_form) }}
         </div>
-    
-    {% else %}
-        Aucun produit dans l'Univers {{ category.title }}
-    {% endfor %}
 
 
 {% endblock %}
+

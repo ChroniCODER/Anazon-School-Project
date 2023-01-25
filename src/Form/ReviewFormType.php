@@ -2,27 +2,29 @@
 
 namespace App\Form;
 
-use App\Entity\ProductImage;
+use App\Entity\Review;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class ProductImageType extends AbstractType
+class ReviewFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('pathFile', VichImageType::class)
-            ->add('position')
-            
+            ->add('user')
+            ->add('product')
+            ->add('review_content')
+            ->add('submit', SubmitType::class)
+
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => ProductImage::class,
+            'data_class' => Review::class,
         ]);
     }
 }
