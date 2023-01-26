@@ -16,13 +16,10 @@
             <span>{{ product.price | format_currency('EUR', locale='fr') }}</span>
         </div>
 
-        <div>
-            {{ form(review_form) }}
-        </div>
-    
     {% else %}
         Aucun produit dans l'Univers {{ category.title }}
     {% endfor %}
 
+<a href="{{ path('app_categories') }}"> Retour à la liste des catégories </a>
 
 {% endblock %}

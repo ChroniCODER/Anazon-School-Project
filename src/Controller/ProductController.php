@@ -15,9 +15,18 @@ class ProductController extends AbstractController
     public function detail(ProductRepository $productRepository, string $id): Response
     {
         $review = new Review();
-        $form = $this->createForm(ReviewFormType::class, $review);
 
+        $form = $this->createForm(ReviewFormType::class, $review);
+        $form->get('user')->setData($this->getUser());
+        
+
+        $product = $productRepository->findOneById($id);
+        $form->get('product')->setData($product);
+        $category = $product->getCategory();
+
+                
         return $this->render('product/detail.html.twig', [
+            'category' => $category,
             'product' => $productRepository->findOneById($id),
             'review_form' => $form->createView(),
         ]);

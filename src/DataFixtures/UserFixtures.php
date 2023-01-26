@@ -13,6 +13,7 @@ class UserFixtures extends Fixture
         $user = new User();
         $user->setEmail('admin@admin.com');
         $user->setRoles(['ROLE_ADMIN']);
+        $user->setFirstname('administrator');
         $user->setPlainPassword('demo');
         //$user->setPassword('$2y$13$QViqjjUzI6QmlJgh4ma3L.2BwH8p357rLA47VHNcW5yeDGPdGSwYa'); // demo
         $manager->persist($user);
@@ -20,6 +21,7 @@ class UserFixtures extends Fixture
         $user = new User();
         $user->setEmail('test@admin.com');
         $user->setRoles(['ROLE_USER']);
+        $user->setFirstname('TestUser');
         $user->setPlainPassword('demo');
         //$user->setPassword('$2y$13$QViqjjUzI6QmlJgh4ma3L.2BwH8p357rLA47VHNcW5yeDGPdGSwYa'); // demo
         $manager->persist($user);

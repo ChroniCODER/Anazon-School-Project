@@ -13,8 +13,8 @@ class ReviewFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('user')
-            ->add('product')
+            ->add('user', null, ['disabled' => true])
+            ->add('product', null, ['disabled' => true])
             ->add('review_content')
             ->add('submit', SubmitType::class)
 
