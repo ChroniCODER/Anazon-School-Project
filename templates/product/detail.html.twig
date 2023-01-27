@@ -1,30 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ product.name }} {% endblock %}
-
-{% block body %}
-    
-    <p> Categorie: {{ category }} <p>
-    <div>
-        <h2>{{ product.name }}</h2>
-        {% if product.productImages | length > 0 %}
-            <img src="{{ asset('product-images/' ~  product.productImages[0].path) }}" width="100" />
-        {% endif %}
-        <span>{{ product.price | format_currency('EUR', locale='fr') }}</span>
-    </div>
-
-    <div>
-        {% if app.user %}
-			{{ form(review_form) }}
-		{% else %}
-			<a href="{{ path('app_login') }}">Connectez-vous pour pouvoir donner une note ou un avis sur le produit</a>
-		{% endif %}
-    </div>
-
-    <div>
-        <a href="{{ path('app_category', { id: category.id }) }}">Retour à la liste des {{ category }}</a>
-    </div>
-
-
+{% block title %}
+	{{ product.name }}
 {% endblock %}
 
+{% block body %}
+
+	<p>
+		Categorie:{{ category }}
+	</p>
+	<p>
+		<div>
+			<h2>{{ product.name }}</h2>
+			{% if product.productImages | length > 0 %}
+				<img src="{{ asset('product-images/' ~ product.productImages[0].path) }}" width="100"/>
+			{% endif %}
+			<span>{{ product.price | format_currency('EUR', locale='fr') }}</span>
+		</div>
+
+		<div>
+			{% if existingReview %}
+				<p>{{ existingReview.ReviewContent }}</p>
+			
+            {% else %}
+				
+                {% if app.user %}
+					{{ form(review_form) }}
+						{% else %}
+							<a href="{{ path('app_login') }}">Connectez-vous pour pouvoir donner une note ou un avis sur le produit</a>
+					{% endif %}
+
+			{% endif %}
+
+			</div>
+
+			<div>
+				<a href="{{ path('app_category', { id: category.id }) }}">Retour à la liste des
+					{{ category }}</a>
+			</div>
+
+
+		{% endblock %}
