@@ -15,23 +15,28 @@ class CategoryFixtures extends Fixture
     {
         $jouets = new Category();
         $jouets->setTitle('Jouets');
+        $jouets->setDescription('Retrouvez ici tous nos jouets et jeux traditionnels divers');
         $manager->persist($jouets);
 
         $vetements = new Category();
         $vetements->setTitle('Vetements');
+        $vetements->setDescription('Retrouvez ici tous nos vetements et accessoires de mode');
         $manager->persist($vetements);
         $this->addReference(self::CATEGORY_VETEMENTS, $vetements);
 
 
         $peluches = new Category();
         $peluches->setTitle('Peluches');
+        $peluches->setDescription('Retrouvez ici nos peluches et doudous');
         $peluches->setParent($jouets);
         $manager->persist($peluches);
         $this->addReference(self::CATEGORY_PELUCHES, $peluches);
 
-        $balades = new Category();
-        $balades->setTitle('Balades');
-        $manager->persist($balades);
+        $hightech = new Category();
+        $hightech->setTitle('High Tech');
+        $hightech->setDescription('Retrouvez ici nos accessoires high-tech et jeux videos');
+
+        $manager->persist($hightech);
 
         $manager->flush();
     }

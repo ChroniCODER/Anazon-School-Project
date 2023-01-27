@@ -5,11 +5,21 @@
 {% block body %}
     <h1>Retrouvez tous nos univers</h1>
     
-    <ul>
-        {% for category in categories %}
-            <li><a href="{{ path('app_category', { id: category.id }) }}"> {{ category.title }}</a></li>
-        {% endfor %}
-    </ul>
+<div class="d-flex flex-wrap">
+
+{% for category in categories %}
+
+  <div class="card mx-3" style="width: 18rem;">
+    <img class="card-img-top" src="https://place-hold.it/300x300" alt="Card image cap">
+    <div class="card-body">
+      <h2><a href="{{ path('app_category', { id: category.id }) }}">{{ category.title }}</a></h2>
+      <p class="card-text">{{ category.description }}</p>
+    </div>
+  </div>
+
+{% endfor %}
+
+</div>
 
 
 {% endblock %}
