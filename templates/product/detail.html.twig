@@ -20,8 +20,10 @@
 
 		<div>
 			{% if existingReview %}
-				<p>{{ existingReview.ReviewContent }}</p>
-			
+                <div>
+                    <p>Vous avez déjà déposé le commentaire ci-dessous.</p>
+                    <p>{{ existingReview.ReviewContent }}</p>
+                </div>
             {% else %}
 				
                 {% if app.user %}

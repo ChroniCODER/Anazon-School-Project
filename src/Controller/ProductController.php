@@ -51,6 +51,7 @@ class ProductController extends AbstractController
             return $this->render('product/detail.html.twig', [
                 'category' => $category,
                 'product' => $productRepository->findOneById($id),
+                'existingReview' => $existingReview,
                 'review_form' => $form->createView(),
             ]);
         }
