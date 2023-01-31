@@ -52,7 +52,9 @@ class ProductController extends AbstractController
                 'category' => $category,
                 'product' => $productRepository->findOneById($id),
                 'existingReview' => $existingReview,
+                
                 'review_form' => $form->createView(),
+
             ]);
         }
     }

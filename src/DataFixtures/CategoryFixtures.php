@@ -34,7 +34,7 @@ class CategoryFixtures extends Fixture
 
         $hightech = new Category();
         $hightech->setTitle('High Tech');
-        $hightech->setDescription('Retrouvez ici nos accessoires high-tech et jeux videos');
+        $hightech->setDescription('Retrouvez ici nos produits high-tech et jeux videos');
 
         $manager->persist($hightech);
 
