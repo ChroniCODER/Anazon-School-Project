@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Review;
 use App\Form\ReviewFormType;
 use App\Repository\CategoryRepository;
-use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
