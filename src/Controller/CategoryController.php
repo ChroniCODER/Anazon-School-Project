@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {   
     
-    #[Route('/categories', name: 'app_categories')]
+    #[Route('/', name: 'app_categories')]
     public function list(CategoryRepository $categoryRepository): Response
     {
         return $this->render('category/list.html.twig', [

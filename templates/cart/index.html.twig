@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+{% if session.get('cart') is empty %}
+        <p>Your cart is empty.</p>
+    {% else %}
+        <p>y'a un truc qui existe </p>
+    {% for cartProduct in cart %}
+        <div>
+            {{ cartProduct.name }}
+        </div>
+        <div>
+            {{ cartProduct.price }}
+        </div>
+        <div>
+            {{ cartProduct.quantity }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

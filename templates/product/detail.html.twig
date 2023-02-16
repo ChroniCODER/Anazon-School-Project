@@ -17,6 +17,14 @@
 			{% endif %}
 			<span>{{ product.price | format_currency('EUR', locale='fr') }}</span>
 		</div>
+		<div>
+			<form method="post" action="{{ path('cart_add') }}">
+				<label for="quantity">Quantity:</label>
+				<input type="number" id="quantity" name="quantity" value="1" min="1" max="10" required>
+				<input type="hidden" name="product_id" value="{{ product.id }}">
+				<button type="submit">Add to cart</button>
+    		</form>
+		</div>
 
 		<div>
 			{% if existingReview %}
