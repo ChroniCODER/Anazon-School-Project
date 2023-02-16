@@ -22,7 +22,9 @@
 			{% if existingReview %}
                 <div>
                     <p>Vous avez déjà déposé le commentaire ci-dessous.</p>
-                    <p>{{ existingReview.ReviewContent }}</p>
+                    <p>Déposé le: {{ existingReview.CreatedAt |format_datetime('full', 'medium', locale='fr') }} </p>
+					<p>note:{{ existingReview.Rating }} </p>
+					<p>{{ existingReview.ReviewContent }}</p>
                 </div>
             {% else %}
 				
