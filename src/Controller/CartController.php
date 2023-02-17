@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
-    #[Route('/cart', name: 'cart_add')]
+    #[Route('/cart', name: 'cart_add', methods:['POST'])]
     public function addToCart(Request $request, SessionInterface $session, ProductRepository $productRepository): Response
     {
         /* if ($request->isMethod('POST')) {
@@ -48,7 +48,7 @@ class CartController extends AbstractController
             'cart' => $cart,
         ]);
     }
-    #[Route('/cartCheck', name: 'cart_check')]
+    #[Route('/cart', name: 'cart_check', methods:['GET'])]
     public function index(SessionInterface $session): Response
     {
         $cart = $session->get('cart', []);
