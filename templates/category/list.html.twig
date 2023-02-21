@@ -10,7 +10,11 @@
 {% for category in categories %}
 
   <div class="card mx-3" style="width: 18rem;">
-    <img class="card-img-top" src="https://place-hold.it/300x300" alt="Card image cap">
+    {% if category.image is not null %}
+      <img class="card-img-top" src="{{ asset('images/categories/' ~ category.image) }}" alt="Card image cap">
+    {% else %}
+      <img class="card-img-top" src="https://place-hold.it/300x300" alt="Card image cap">
+    {% endif %}
     <div class="card-body">
       <h2><a href="{{ path('app_category', { id: category.id }) }}">{{ category.title }}</a></h2>
       <p class="card-text">{{ category.description }}</p>
