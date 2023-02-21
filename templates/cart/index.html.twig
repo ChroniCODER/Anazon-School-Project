@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Panier{% endblock %}
+
+{% block body %}
+
+    <table>
+        <tr>
+            <th>Photo</th>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for cartRow in cart.getRows() %}
+        <tr>
+            <td></td>
+            <td>{{ cartRow.productId }}</td>
+            <td></td>
+            <td>{{ cartRow.quantity }}</td>
+            <td></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
