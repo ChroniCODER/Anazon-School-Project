@@ -14,7 +14,7 @@ class CartRowType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('product', HiddenType::class)
+            ->add('product_id', HiddenType::class)
             ->add('quantity', IntegerType::class)
             ->add('submit', SubmitType::class)
             ;

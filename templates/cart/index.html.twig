@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <table>
+    <table class= "table table-full table-hover table-stripped">
         <tr>
             <th>Photo</th>
             <th>Produit</th>
@@ -15,11 +15,15 @@
 
         {% for cartRow in cart.getRows() %}
         <tr>
-            <td></td>
+            <td>Photo</td>
             <td>{{ cartRow.productId }}</td>
-            <td></td>
+            <td>prix</td>
             <td>{{ cartRow.quantity }}</td>
-            <td></td>
+            <td>Actions</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5">Votre Panier est vide</td>
         </tr>
         {% endfor %}
     </table>

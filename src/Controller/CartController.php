@@ -29,7 +29,7 @@ class CartController extends AbstractController
         
         if ($cartForm->isSubmitted() && $cartForm->isValid()){
             $data = $cartForm->getData();
-
+            
             $product = $productRepository->find($data['product_id']);
 
             if(!$product){
