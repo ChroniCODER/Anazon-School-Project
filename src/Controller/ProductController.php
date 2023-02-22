@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Review;
+use App\Form\CartRowType;
 use App\Form\ReviewFormType;
 use App\Repository\ProductRepository;
 use App\Repository\ReviewRepository;
@@ -17,7 +18,7 @@ class ProductController extends AbstractController
     #[Route('/products/{id}', name: 'app_product')]
     public function detail(ProductRepository $productRepository, string $id, EntityManagerInterface $em, Request $request, ReviewRepository $reviewRepository): Response
     {
-
+       
         $review = new Review();
         $product = $productRepository->findOneById($id);
 
@@ -48,11 +49,17 @@ class ProductController extends AbstractController
                 return $this->redirectToRoute('app_product', ['id' => $product->getId()]);
             }
 
+            $cartForm = $this->createForm(CartRowType::class, [
+                'product_id' => $product->getId(),
+            ], [
+                'action' => $this->generateUrl('app_cart'),
+            ]);
+
             return $this->render('product/detail.html.twig', [
                 'category' => $category,
                 'product' => $productRepository->findOneById($id),
                 'existingReview' => $existingReview,
-                
+                'cart_form' => $cartForm,
                 'review_form' => $form->createView(),
 
             ]);
