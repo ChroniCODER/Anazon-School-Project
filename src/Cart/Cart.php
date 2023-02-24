@@ -42,4 +42,15 @@ class Cart
             unset ($this->rows[$product->getId()]);
         }
     }
+
+    public function countTotalProducts(): int
+    {
+        $count = 0;
+
+        foreach ($this-> rows as $row){
+            $count += $row->getQuantity(); 
+        }
+        return $count;
+    }
+
 }

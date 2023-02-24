@@ -22,7 +22,14 @@
 						{% else %}
 							<i class="fa-solid fa-user text-white"></i> <a href="{{ path('app_login') }}">Connexion</a>
 						{% endif %}
-						<i class="fa-solid fa-cart-shopping text-white"></i><a href="{{ path('app_categories') }}">Mon panier</a>
+						<i class="fa-solid fa-cart-shopping text-white"></i><a href="{{ path('app_cart') }}">
+						Mon panier ( 
+							{% if (app.request.session.has('cart')) %}
+								{{ (app.request.session.get('cart').countTotalProducts() ) }}
+							{% else %}
+								0 
+							{% endif %}
+							)</a>
 
 					</li>
 					

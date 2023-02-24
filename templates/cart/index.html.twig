@@ -16,9 +16,13 @@
         {% for cartRow in cart.getRows() %}
         {% set product = getProductById(cartRow.productId) %}
         <tr>
-            <td>Photo</td>
+            <td>
+                {% if product.productImages | length > 0 %}
+                    <img src="{{ asset('product-images/' ~  product.productImages[0].path) }}" width="100" />
+                {% endif %}Photo
+            </td>
             <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
+            <td>{{ product.price | format_currency('EUR', locale='fr') }}</td>
             <td>{{ cartRow.quantity }}</td>
             <td>Actions</td>
         </tr>
