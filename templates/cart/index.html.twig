@@ -1,36 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon Panier{% endblock %}
+{% block title %}Mon Panier
+{% endblock %}
 
 {% block body %}
 
-    <table class= "table table-full table-hover table-stripped">
-        <tr>
-            <th>Photo</th>
-            <th>Produit</th>
-            <th>Prix</th>
-            <th>Quantité</th>
-            <th>Actions</th>
-        </tr>
-        
-        {% for cartRow in cart.getRows() %}
-        {% set product = getProductById(cartRow.productId) %}
-        <tr>
-            <td>
-                {% if product.productImages | length > 0 %}
-                    <img src="{{ asset('product-images/' ~  product.productImages[0].path) }}" width="100" />
-                {% endif %}Photo
-            </td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.price | format_currency('EUR', locale='fr') }}</td>
-            <td>{{ cartRow.quantity }}</td>
-            <td>Actions</td>
-        </tr>
-        {% else %}
-        <tr>
-            <td colspan="5">Votre Panier est vide</td>
-        </tr>
-        {% endfor %}
-    </table>
+	<table class="table table-full table-hover table-stripped">
+		<tr>
+			<th>Photo</th>
+			<th>Produit</th>
+			<th>Prix</th>
+			<th>Quantité</th>
+			<th>Actions</th>
+		</tr>
+
+		{% for cartRow in cart.getRows() %}
+			{% set product = getProductById(cartRow.productId) %}
+			<tr data-controller="cartrow">
+				<td>
+					{% if product.productImages | length > 0 %}
+						<img src="{{ asset('product-images/' ~ product.productImages[0].path) }}" width="100"/>
+					{% endif %}Photo
+				</td>
+				<td>{{ product.name }}</td>
+				<td>{{ product.price | format_currency('EUR', locale='fr') }}</td>
+				<td>{{ cartRow.quantity }}</td>
+				<td>
+					<a data-action="click->cartrow#remove" data-cartrow-productid-param="{{ cartRow.productId }}">
+						<i class="fa fa-trash"></i>
+					</a>
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="5">Votre Panier est vide</td>
+			</tr>
+		{% endfor %}
+	</table>
 
 {% endblock %}

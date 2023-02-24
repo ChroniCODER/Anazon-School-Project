@@ -43,6 +43,15 @@ class Cart
         }
     }
 
+    public function removeRow(Product $product): void
+    {
+        if(!isset($this->rows[$product->getId()])) {
+            throw new InvalidArgumentException('the product is not in the cart');
+        }
+        unset ($this->rows[$product->getId()]);
+        
+    }
+
     public function countTotalProducts(): int
     {
         $count = 0;
