@@ -12,12 +12,13 @@
             <th>Quantité</th>
             <th>Actions</th>
         </tr>
-
+        
         {% for cartRow in cart.getRows() %}
+        {% set product = getProductById(cartRow.productId) %}
         <tr>
             <td>Photo</td>
-            <td>{{ cartRow.productId }}</td>
-            <td>prix</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
             <td>{{ cartRow.quantity }}</td>
             <td>Actions</td>
         </tr>
