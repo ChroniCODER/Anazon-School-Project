@@ -14,7 +14,7 @@
 				
 				<ul class="navbar-nav ml-auto mb-2 mb-lg-0">
 					
-					<li class="nav-item">
+					<li class="nav-item" data-controller="cartheader">
 						
 						<i class="fa-solid fa-house text-white"></i><a href="{{ path('app_categories') }}">Accueil</a>
 						{% if app.user %}
@@ -22,14 +22,15 @@
 						{% else %}
 							<i class="fa-solid fa-user text-white"></i> <a href="{{ path('app_login') }}">Connexion</a>
 						{% endif %}
-						<i class="fa-solid fa-cart-shopping text-white"></i><a href="{{ path('app_cart') }}">
-						Mon panier ( 
+						<i class="fa-solid fa-cart-shopping text-white"></i>
+						<a href="{{ path('app_cart') }}">
+						Mon panier (<span data-cartheader-target="quantity"> 
 							{% if (app.request.session.has('cart')) %}
 								{{ (app.request.session.get('cart').countTotalProducts() ) }}
 							{% else %}
 								0 
 							{% endif %}
-							)</a>
+							</span>)</a>
 
 					</li>
 					

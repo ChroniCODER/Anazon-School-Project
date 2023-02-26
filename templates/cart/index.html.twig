@@ -24,10 +24,18 @@
 				</td>
 				<td>{{ product.name }}</td>
 				<td>{{ product.price | format_currency('EUR', locale='fr') }}</td>
-				<td>{{ cartRow.quantity }}</td>
+				<td data-cartrow-target="quantity">{{ cartRow.quantity }}</td>
 				<td>
+					<a data-action="click->cartrow#decrement" data-cartrow-productid-param="{{ cartRow.productId }}">
+						<i class="fa fa-minus"></i>
+					</a>
+					
 					<a data-action="click->cartrow#remove" data-cartrow-productid-param="{{ cartRow.productId }}">
 						<i class="fa fa-trash"></i>
+					</a>
+
+					<a data-action="click->cartrow#increment" data-cartrow-productid-param="{{ cartRow.productId }}">
+						<i class="fa fa-plus"></i>
 					</a>
 				</td>
 			</tr>

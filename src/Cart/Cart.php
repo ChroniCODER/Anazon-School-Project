@@ -20,6 +20,15 @@ class Cart
         return $this->rows;
     }
 
+    public function getRow(Product $product): CartRow
+    {
+        if(!isset($this->rows[$product->getId()])) {
+            throw new InvalidArgumentException('the product is not in the cart');
+        }
+
+        return $this->rows[$product->getId()];
+    }
+
     public function add(Product $product, int $quantity): void
     {
         if(isset($this->rows[$product->getId()])) {

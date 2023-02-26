@@ -53,7 +53,42 @@ class CartController extends AbstractController
         $cart = $this->getCart($session);
         $cart->removeRow($product);
 
-        return new JsonResponse(null, 204);
+        return new JsonResponse([
+            
+            'totalQuantity' => $cart->countTotalProducts(),
+        ]);
+    }
+
+    #[Route('/cart/{id}/increment', methods: [ 'POST' ])]
+    public function incrementRow(
+        Product $product,
+        SessionInterface $session
+    ): JsonResponse
+    {
+        $cart = $this->getCart($session);
+        $cartRow = $cart->getRow($product);
+        $cartRow->add(1);
+
+        return new JsonResponse([
+            'rowQuantity' => $cartRow->getQuantity(),
+            'totalQuantity' => $cart->countTotalProducts(),
+        ]); 
+    }
+
+    #[Route('/cart/{id}/decrement', methods: [ 'POST' ])]
+    public function decrementRow(
+        Product $product,
+        SessionInterface $session
+    ): JsonResponse
+    {
+        $cart = $this->getCart($session);
+        $cartRow = $cart->getRow($product);
+        $cartRow->remove(1);
+
+        return new JsonResponse([
+            'rowQuantity' => $cartRow->getQuantity(),
+            'totalQuantity' => $cart->countTotalProducts(),
+        ]); 
     }
 
     private function getCart(SessionInterface $session): Cart
