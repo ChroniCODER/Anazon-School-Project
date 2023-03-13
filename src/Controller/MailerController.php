@@ -28,7 +28,7 @@ class MailerController extends AbstractController
             //->priority(Email::PRIORITY_HIGH)
             ->subject('Time for Symfony Mailer!')
             ->text('Sending emails is fun again!')
-            ->addPart(new DataPart (fopen($this->getParameter('kernel.project_dir').'/public/product-images/ane-en-peluche.jpg', 'r'), 'ane-en-PJtest.jpg', 'image/jpeg'))
+            ->addPart((new DataPart (fopen($this->getParameter('kernel.project_dir').'/public/product-images/ane-en-peluche.jpg', 'r'), 'ane', 'image/jpeg'))->asInline())
             ->htmlTemplate('emails/demo.html.twig')
             ->context([
                     'product' => $product,
