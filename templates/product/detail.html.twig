@@ -11,6 +11,8 @@
 	</p>
 	<p>
 		<div>
+			<a href="{{ path('app_email_product', { id:product.id }) }}"> SHARE by mail </a>
+				
 			<h2>{{ product.name }}</h2>
 			{% if product.productImages | length > 0 %}
 				<img src="{{ asset('product-images/' ~ product.productImages[0].path) }}" width="100"/>

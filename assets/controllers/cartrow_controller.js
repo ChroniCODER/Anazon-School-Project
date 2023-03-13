@@ -12,6 +12,7 @@ export default class extends Controller {
             }
         )
         .then((data) => {
+            console.log(data);
             this.element.remove();
             let cartHeaderController = this.application.getControllerForElementAndIdentifier(document.querySelector('[data-controller="cartheader"]'), 'cartheader')
             cartHeaderController.setQuantity(data.totalQuantity);
@@ -27,9 +28,11 @@ export default class extends Controller {
         )
         .then((response) => response.json())
         .then((data) => {
+            console.log(data);
             let cartHeaderController = this.application.getControllerForElementAndIdentifier(document.querySelector('[data-controller="cartheader"]'), 'cartheader')
             cartHeaderController.setQuantity(data.totalQuantity);
             this.quantityTarget.textContent = data.rowQuantity;
+            
         });
     }
 
@@ -42,6 +45,7 @@ export default class extends Controller {
         )
         .then((response) => response.json())
         .then((data) => {
+            console.log(data);
             let cartHeaderController = this.application.getControllerForElementAndIdentifier(document.querySelector('[data-controller="cartheader"]'), 'cartheader')
             cartHeaderController.setQuantity(data.totalQuantity);
             this.quantityTarget.textContent = data.rowQuantity;

@@ -4,8 +4,8 @@ export default class extends Controller {
 
     static targets = ['quantity'];
 
-    setQuantity(quantity){
-        this.quantityTarget.textContent = data.rowQuantity;
+    setQuantity(quantity) {
+        this.quantityTarget.textContent = quantity;
 
 
     }

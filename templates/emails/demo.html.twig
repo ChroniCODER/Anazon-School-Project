@@ -1,0 +1,8 @@
+{# templates/emails/signup.html.twig #}
+<h1> {{ app.user }} vous fait decouvrir</h1>
+
+<p>image du produit 
+    <img src="{{ asset('product-images/' ~ product.productImages[0].path) }}" width="100"/>
+<p>
+    voici le produit {{ product.name }}
+</p>

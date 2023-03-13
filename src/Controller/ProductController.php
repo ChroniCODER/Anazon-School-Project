@@ -18,7 +18,7 @@ class ProductController extends AbstractController
     #[Route('/products/{id}', name: 'app_product')]
     public function detail(ProductRepository $productRepository, string $id, EntityManagerInterface $em, Request $request, ReviewRepository $reviewRepository): Response
     {
-       
+
         $review = new Review();
         $product = $productRepository->findOneById($id);
 
@@ -30,13 +30,21 @@ class ProductController extends AbstractController
         $review->setProduct($product);
         $review->setUser($this->getUser());
 
+        $cartForm = $this->createForm(CartRowType::class, [
+            'product_id' => $product->getId(),
+        ], [
+            'action' => $this->generateUrl('app_cart'),
+        ]);
+        
         $existingReview = $reviewRepository->findOneBy(['product' => $product, 'user' => $this->getUser()]);
         if ($existingReview) {
             // l'utilisateur a déjà déposé une critique pour ce produit
+            
             return $this->render('product/detail.html.twig', [
                 'category' => $category,
                 'existingReview' => $existingReview,
                 'product' => $productRepository->findOneById($id),
+                'cart_form' => $cartForm,
             ]);
         } else {
 
@@ -49,11 +57,6 @@ class ProductController extends AbstractController
                 return $this->redirectToRoute('app_product', ['id' => $product->getId()]);
             }
 
-            $cartForm = $this->createForm(CartRowType::class, [
-                'product_id' => $product->getId(),
-            ], [
-                'action' => $this->generateUrl('app_cart'),
-            ]);
 
             return $this->render('product/detail.html.twig', [
                 'category' => $category,
